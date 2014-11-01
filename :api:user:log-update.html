@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0052)http://14.63.171.66:8081/tleafstructure/user/signup? -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>User Signup Page</title>
+
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+			
+          function push() {
+          	console.log(this.email1);
+               var url = "http://localhost:8080/api/user/log";
+               
+               $.ajax({
+                    type : 'POST',
+                    beforeSend: function ( request )
+                    {
+                         request.setRequestHeader( "X-Tleaf-User-Id", "344bc889c8bb44dd6e4bb845d40007b9" );
+                         request.setRequestHeader( "X-Tleaf-Application-Id", "6b22f647ef8f2f3278a1322d8b000f81" );
+                         request.setRequestHeader( "X-Tleaf-Access-Token", "6b22f647ef8f2f3278a1322d8b000210" );
+                    },
+                    url : url,
+                    async : true,
+                    contentType : 'application/json',
+                    data : JSON.stringify( {  revision :"1-0b5e8d7948943c34dff6b4e70c9cd165", id :"c610c549ad8fa56ed7ecd0f2b900159d", "data":{"date":"2014-10-28T16:17:47Z","purpose":"Document Update Test"}} ) ,
+                    success : function(response) {
+                         console.log(response);
+                         alert(response);
+                    },
+                    error : function(xhr) {
+                         alert('Error!  Status = ' + xhr.status + " Message = "
+                                   + xhr.statusText);
+                    }
+               });
+
+               
+          }
+</script>
+</head>
+<body>
+
+<button onClick="javascript:push()"></button>
+
+</body></html>
