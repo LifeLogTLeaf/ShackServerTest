@@ -39,6 +39,22 @@ public class App {
     	
     	System.out.println( "Starting REST Api Request...\n" );
 
+    	// Create a HTTP GET Request
+    	HttpGet httpGetRequest = new HttpGet( "http://14.63.171.66:8081/tleafstructure/" + "api/user" );
+    	
+    	// Set custom Headers ( for Authorization ) and Content-Type
+    	httpGetRequest.addHeader( USERID_HEADER_NAME, USERID );
+    	httpGetRequest.addHeader( APPID_HEADER_NAME, APPID );
+    	httpGetRequest.addHeader( ACCESSKEY_HEADER_NAME, ACCESSKEY );
+    	httpGetRequest.setHeader( "content-type","application/json" );
+    	
+    	// Create a Default HTTP Client
+    	HttpClient client = new DefaultHttpClient();
+    	
+    	try {
+			HttpResponse response = client.execute( httpGetRequest );
+		} catch ( Exception e ) {}
+    	
     	// Starting GET request on 'rest.tleaf.us/tleafstructure/api/user'
     	executeRequest( baseUrl + "api/user" , "GET" , null );
     	
@@ -133,6 +149,7 @@ public class App {
     		
     		System.out.println(jsonObject);
     		
+    		// Puts it into the Request Body
 			httpPost.setEntity( new StringEntity( jsonObject ) );
 			
 		} catch ( Exception e ) {
