@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0052)http://14.63.171.66:8081/tleafstructure/user/signup? -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>User Signup Page</title>
+
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+			
+          function push() {
+          	console.log(this.email1);
+               var url = "http://localhost:8080/user/signup";
+               
+               $.ajax({
+                    type : 'POST',
+                    url : url,
+                    async : true,
+                    contentType : 'application/json',
+                    data : '{ "email":"susu@daum.net" , "password":"12345" , "nickname":"yoon" , "gender":"male" , "age":15 }' ,
+                    success : function(response) {
+                         console.log(response);
+                         alert(response);
+                    },
+                    error : function(xhr) {
+                         alert('Error!  Status = ' + xhr.status + " Message = "
+                                   + xhr.statusText);
+                    }
+               });
+
+               
+          }
+</script>
+</head>
+<body>
+	
+<button onClick="javascript:push()"></button>
+
+</body></html>
