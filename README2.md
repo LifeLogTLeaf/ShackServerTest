@@ -44,6 +44,7 @@ Now Let's Look at how we can Use TLeaf's API
     	HttpClient client = new DefaultHttpClient();
     	
     	try {
+			// Executes Request
 			HttpResponse response = client.execute( httpGetRequest );
 		} catch ( Exception e ) {}
 
