@@ -9,14 +9,22 @@
 			
           function push() {
           	console.log(this.email1);
-               var url = "http://14.63.171.66:8081/tleafstructure/user/login";
+
+                var data = new FormData();
+                
+                jQuery.each(
+                  $('input[name^="file"]')[0].files,
+                  function(i, file) { data.append('file-'+i, file); }
+                );
+               
+                var url = "http://localhost:8080/api/user/file";
                
                $.ajax({
                     type : 'POST',
                     url : url,
                     async : true,
-                    contentType : 'application/json',
-                    data : '{ "email":"os1742@gmail.com" , "password":"123456" }' ,
+                    contentType : 'multipart/form-data',
+                    data : data ,
                     success : function(response) {
                          console.log(response);
                          alert(response);
@@ -32,6 +40,12 @@
 </script>
 </head>
 <body>
+
+<form enctype="multipart/form-data" action="http://localhost:8080/api/user/file" method="post" class="putImages">
+   <input name="file" type="file" multiple/>
+   <input class="button" type="submit" alt="Upload" value="Upload" />
+</form>
+
 <button onClick="javascript:push()"></button>
 
 </body></html>
